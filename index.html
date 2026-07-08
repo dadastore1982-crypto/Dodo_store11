@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dodo Store</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#f5f5f5;
+transition:.3s;
+}
+
+header{
+background:#ff5fa2;
+color:white;
+text-align:center;
+padding:25px;
+}
+
+#search{
+width:80%;
+padding:15px;
+border:0;
+border-radius:10px;
+font-size:18px;
+}
+
+main{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.category{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 5px 15px #ccc;
+text-align:center;
+}
+
+h2{
+color:#ff5fa2;
+}
+
+button{
+background:#ff5fa2;
+color:white;
+border:0;
+padding:10px 15px;
+border-radius:20px;
+cursor:pointer;
+margin:5px;
+}
+
+.products{
+display:none;
+background:#eee;
+padding:10px;
+border-radius:10px;
+margin-top:10px;
+}
+
+.products p{
+background:white;
+padding:10px;
+border-radius:8px;
+}
+
+
+#productBox{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 20px #000;
+text-align:center;
+z-index:10;
+}
+
+
+footer{
+background:#222;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+
+.dark{
+background:#121212;
+color:white;
+}
+
+.dark .category{
+background:#222;
+}
+
+.dark .products{
+background:#333;
+}
+
+.dark .products p{
+background:#444;
+color:white;
+}
+
+.dark #productBox{
+background:#222;
+color:white;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>🦤 Dodo Store</h1>
+
+<p>متجر المفروشات</p>
+
+<input id="search" placeholder="🔍 ابحث عن منتج" onkeyup="searchProduct()">
+
+<br>
+
+<button onclick="darkMode()">
+🌙 Dark Mode
+</button>
+
+</header>
+
+
+
+<main>
+
+
+
+<div class="category">
+
+<h2>🛏️ الملايات</h2>
+
+<button onclick="openBox('malayat')">
+عرض الأنواع
+</button>
+
+<div id="malayat" class="products">
+
+<p>طقم ملاية أطفال 6 قطع
+<br>
+<button onclick="showProduct('طقم ملاية أطفال 6 قطع')">👀 عرض</button>
+</p>
+
+<p>ملايات ثري دي تركي
+<br>
+<button onclick="showProduct('ملايات ثري دي تركي')">👀 عرض</button>
+</p>
+
+<p>طقم ملاية سرير كبير
+<br>
+<button onclick="showProduct('طقم ملاية سرير كبير')">👀 عرض</button>
+</p>
+
+</div>
+
+</div>
+
+
+
+
+<div class="category">
+
+<h2>🪟 الستائر</h2>
+
+<button onclick="openBox('setayer')">
+عرض الأنواع
+</button>
+
+<div id="setayer" class="products">
+
+<p>ستارة قطيفة اقتصادية
+<br>
+<button onclick="showProduct('ستارة قطيفة اقتصادية')">👀 عرض</button>
+</p>
+
+<p>قطيفة زبدة
+<br>
+<button onclick="showProduct('قطيفة زبدة')">👀 عرض</button>
+</p>
+
+<p>ستائر فيرزاتشي
+<br>
+<button onclick="showProduct('ستائر فيرزاتشي')">👀 عرض</button>
+</p>
+
+<p>ستارة شيفون
+<br>
+<button onclick="showProduct('ستارة شيفون')">👀 عرض</button>
+</p>
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="category">
+
+<h2>🛋️ المفارش</h2>
+
+<button onclick="openBox('mafarsh')">
+عرض الأنواع
+</button>
+
+<div id="mafarsh" class="products">
+
+<p>مفارش فرو مستورد
+<br>
+<button onclick="showProduct('مفارش فرو مستورد')">👀 عرض</button>
+</p>
+
+<p>مفرش سفرة جلد
+<br>
+<button onclick="showProduct('مفرش سفرة جلد')">👀 عرض</button>
+</p>
+
+<p>رانر سفرة
+<br>
+<button onclick="showProduct('رانر سفرة')">👀 عرض</button>
+</p>
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="category">
+
+<h2>🛋️ الكوشن</h2>
+
+<button onclick="openBox('koshon')">
+عرض الأنواع
+</button>
+
+<div id="koshon" class="products">
+
+<p>كوشن أباليك
+<br>
+<button onclick="showProduct('كوشن أباليك')">👀 عرض</button>
+</p>
+
+<p>كوشن بابلز
+<br>
+<button onclick="showProduct('كوشن بابلز')">👀 عرض</button>
+</p>
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="category">
+
+<h2>🟢 واتساب</h2>
+
+<p>للطلب والانضمام للجروب</p>
+
+<button onclick="openWhatsApp()">
+فتح واتساب
+</button>
+
+</div>
+
+
+</main>
+
+
+
+
+<div id="productBox">
+
+<h2 id="productName"></h2>
+
+<p>للطلب أو معرفة التفاصيل اضغط واتساب</p>
+
+<button onclick="openWhatsApp()">
+🟢 واتساب
+</button>
+
+<br>
+
+<button onclick="closeProduct()">
+إغلاق
+</button>
+
+</div>
+
+
+
+
+<footer>
+
+© 2026 Dodo Store
+
+</footer>
+
+
+
+
+<script>
+
+
+let whatsappLink =
+"https://chat.whatsapp.com/DBBGku6xg469qPXRrvGtv1?s=cl&p=a&mlu=0&ilr=0";
+
+
+function openBox(id){
+
+let box=document.getElementById(id);
+
+box.style.display=
+box.style.display=="block" ? "none" : "block";
+
+}
+
+
+
+function showProduct(name){
+
+document.getElementById("productBox").style.display="block";
+
+document.getElementById("productName").innerHTML=name;
+
+}
+
+
+
+function closeProduct(){
+
+document.getElementById("productBox").style.display="none";
+
+}
+
+
+
+function openWhatsApp(){
+
+window.open(whatsappLink,"_blank");
+
+}
+
+
+
+function searchProduct(){
+
+let input=document.getElementById("search").value.toLowerCase();
+
+let products=document.querySelectorAll(".products p");
+
+
+products.forEach(function(item){
+
+if(item.innerText.toLowerCase().includes(input)){
+item.style.display="block";
+}
+else{
+item.style.display="none";
+}
+
+});
+
+}
+
+
+
+function darkMode(){
+
+document.body.classList.toggle("dark");
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
